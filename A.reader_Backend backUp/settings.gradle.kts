@@ -1,0 +1,1 @@
+rootProject.name = "com.example.a-reader_backend"
