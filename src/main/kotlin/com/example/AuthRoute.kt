@@ -2,7 +2,6 @@ package com.example
 
 import com.example.data.requests.SingInAuthRequest
 import com.example.data.requests.SingUpAuthRequest
-import com.example.data.respond.UserRequestRespond
 import com.example.data.user.User
 import com.example.data.user.UserDataSource
 import com.example.security.hashing.HashingService
@@ -184,14 +183,12 @@ fun Route.getUserEmail() {
     }
 }
 
-fun Route.getUser() {
-    authenticate {
-        get("getUser") {
-            val principal = call.principal<JWTPrincipal>()
-            val userEmail = principal?.getClaim("email", String::class)
-            val userName = principal?.getClaim("username", String::class)
-            call.respond(HttpStatusCode.OK, UserRequestRespond(userEmail, userName))
-            return@get
-        }
+fun Route.getUser(
+    userDataSource: UserDataSource
+) {
+    get("getUser/{userName}") {
+        val userName = call.parameters["userName"].toString()
+
+
     }
 }
