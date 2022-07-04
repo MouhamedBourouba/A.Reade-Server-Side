@@ -12,14 +12,13 @@ import io.ktor.server.routing.*
 fun Route.addBook(
     userDataSource: UserDataSource
 ) {
-    put("userBooks/addBook/{userName}/{bookId}") {
+    put("userBooks/addBook/{userName}") {
         val userName = call.parameters["userName"].toString()
-        val bookId = call.parameters["bookId"].toString()
         val book = call.receiveOrNull<MBook>() ?: kotlin.run {
             call.respond(HttpStatusCode.BadRequest)
             return@put
         }
-        val isSuccess = userDataSource.addBook(userName, bookId, book)
+        val isSuccess = userDataSource.addBook(userName,book)
         if (isSuccess) {
             call.respond(HttpStatusCode.OK)
             return@put

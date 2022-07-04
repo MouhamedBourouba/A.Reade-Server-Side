@@ -20,7 +20,10 @@ fun Application.configureRouting(
         singUp(hashingService, userDataSource)
         authenticate()
         getUserEmail()
-        getUser()
+        getUser(userDataSource)
+        updateBook(userDataSource)
+        deleteBook(userDataSource)
+        addBook(userDataSource)
         getUserName()
     }
 }

@@ -1,7 +1,6 @@
 package com.example.data.user
 
-import java.awt.print.Book
-
+@kotlinx.serialization.Serializable
 data class MBook(
     val title: String? = null,
     val authors: String? = null,

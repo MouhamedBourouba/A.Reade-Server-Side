@@ -188,7 +188,35 @@ fun Route.getUser(
 ) {
     get("getUser/{userName}") {
         val userName = call.parameters["userName"].toString()
-
-
+        val userByUserName = userDataSource.getUserByUserName(userName)
+        if (userByUserName != null) {
+            call.respond(HttpStatusCode.OK, userByUserName)
+            return@get
+        } else {
+            call.respond(HttpStatusCode.Conflict)
+            return@get
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
